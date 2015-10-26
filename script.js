@@ -1,16 +1,16 @@
 // wait til ready
 $(document).ready(function() {
 
-  // put all functions inside an object
+  // put all functions and variables inside an object
   var warGame = {
 
-
+    // initialize the decks
     deckMain: [],
     deck1: [],
     deck2: [],
     suits: ["hearts", "diamonds", "spades", "clubs"],
 
-    // initialize the decks
+    // create the base main deck
     makeDeck: function() {
       for (var i = 0; i < this.suits.length; i++) {
         for (var j = 2; j <= 14; j++) {
@@ -21,12 +21,10 @@ $(document).ready(function() {
           this.deckMain.push(card);
         }
       }
-      // console.log(this.deckMain);
     },
 
+    // split random and equal set of 26 cards into each player's deck
     shuffleSplit: function() {
-      // split random and equal set of 26 cards into each player's deck
-      // TODO clean mechanism to toggle between which array to deal towards
       var deal = 1;
       while (this.deckMain.length > 0) {
         var randomIndex = Math.floor(Math.random() * this.deckMain.length);
@@ -63,6 +61,7 @@ $(document).ready(function() {
       return outcome;
     },
 
+    // append the played cards to the deck of whichever player won the battle
     playHand: function() {
       var cardA = this.deck1.splice(0,1)[0];
       var cardB = this.deck2.splice(0,1)[0];
@@ -85,12 +84,7 @@ $(document).ready(function() {
       console.log(this.deck2);
     },
 
-    // test code
-    yellowBackground: $("p").on("click", function() {
-      $(this).css("background", "green");
-    }),
-
-    //call the playHand on clicks
+    //call the playHand on clicks of the play button
     callHand: function() {
       $("#play").on("click", function() {
         // TODO, how to make it say "this.playHand()" and work, not just "warGame.playHand"
@@ -106,6 +100,7 @@ $(document).ready(function() {
   };
 
   warGame.initializeGame();
-  // warGame.playHand();
+
+
 
 });
