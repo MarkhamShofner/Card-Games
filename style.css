@@ -44,11 +44,11 @@ header {
 
 .square {
   float: left;
-  border-style: solid;
-  border-width: 1px;
-  height: 15px;
+  /*border-style: solid;
+  border-width: 1px;*/
+  height: 13.5px;
   width: 1.5%;
-  background-color: white;
+  /*background-color: white;*/
 }
 
 .activated {
