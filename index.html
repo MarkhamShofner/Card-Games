@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <link rel = "stylesheet" href = "style.css">
+  <link rel="stylesheet" href="style.css">
   <title>WAR</title>
 </head>
+
 <body>
-  <p> WAH </p>
-  <button type="button" id="play">PLAY</button>
+  <header>
+    <h1> WAH </h1>
+    <button type="button" id="play">PLAY</button>
+  </header>
+  <div id="landscape">
+    <div class="player" id="player1">
+      <img class="playerImage" src=images/Drawing.png>
+    </div>
+    <div class="player" id="player2">
+      <img class="playerImage secondPlayer" src=images/Drawing.png>
+    </div>
+  </div>
+  <div id="quivers">
+    <div class="scoreBoard" id="score1"> 26/52
+    </div>
+    <div class="quiver" id="quiver1">
+    </div>
+    <div class="quiver" id="quiver2">
+    </div>
+  </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>

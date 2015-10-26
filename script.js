@@ -61,6 +61,31 @@ $(document).ready(function() {
       return outcome;
     },
 
+    showScore: function () {
+      $("#score1").html(this.deck1.length + " /52");
+    },
+
+    showQuiver: function () {
+      for (var i = 0; i<52; i++) {
+        var activeSquare = $(".square").eq(i);
+        if (i<this.deck1.length) {
+        activeSquare.attr("class", "square activated");
+      } else {
+        activeSquare.attr("class", "square");
+      }
+      }
+    },
+
+    setQuiver: function() {
+      for (var i = 0; i<=52; i++) {
+        var div = document.createElement("div");
+        $("body").append(div);
+        $(div).attr("class","square");
+        if (i<26) {
+          $(div).attr("class","square activated");
+        } else {}
+}},
+
     // append the played cards to the deck of whichever player won the battle
     playHand: function() {
       var cardA = this.deck1.splice(0,1)[0];
@@ -89,6 +114,8 @@ $(document).ready(function() {
       $("#play").on("click", function() {
         // TODO, how to make it say "this.playHand()" and work, not just "warGame.playHand"
         warGame.playHand();
+        warGame.showScore();
+        warGame.showQuiver();
       });
     },
 
@@ -96,6 +123,7 @@ $(document).ready(function() {
       this.makeDeck();
       this.shuffleSplit();
       this.callHand();
+      this.setQuiver();
     }
   };
 
