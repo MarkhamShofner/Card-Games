@@ -1,6 +1,6 @@
 # Card-Games
 User Stories:
-1. Role: User
+### 1. Role: User
 Goal: Play a card.
 Reason: Engage in a hand with my opponent.
 2. Role: User
