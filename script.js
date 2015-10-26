@@ -61,35 +61,37 @@ $(document).ready(function() {
       return outcome;
     },
 
-    showScore: function () {
-      $("#score1").html(this.deck1.length + " /52");
+    showScore: function() {
+      $("#score1").html(this.deck1.length);
     },
 
-    showQuiver: function () {
-      for (var i = 0; i<52; i++) {
+    // TODO have the images show up simultaneously, instead of lagging on the right
+    showQuiver: function() {
+      for (var i = 0; i < 52; i++) {
         var activeSquare = $(".square").eq(i);
-        if (i<this.deck1.length) {
-        activeSquare.attr("class", "square activated");
-      } else {
-        activeSquare.attr("class", "square");
-      }
+        if (i < this.deck1.length) {
+          activeSquare.attr("class", "square one");
+        } else {
+          activeSquare.attr("class", "square two");
+        }
       }
     },
 
     setQuiver: function() {
-      for (var i = 0; i<=52; i++) {
+      for (var i = 0; i <= 52; i++) {
         var div = document.createElement("div");
-        $("body").append(div);
-        $(div).attr("class","square");
-        if (i<26) {
-          $(div).attr("class","square activated");
+        $("#quivers").append(div);
+        $(div).attr("class", "square one");
+        if (i < 26) {
+          $(div).attr("class", "square two");
         } else {}
-}},
+      }
+    },
 
     // append the played cards to the deck of whichever player won the battle
     playHand: function() {
-      var cardA = this.deck1.splice(0,1)[0];
-      var cardB = this.deck2.splice(0,1)[0];
+      var cardA = this.deck1.splice(0, 1)[0];
+      var cardB = this.deck2.splice(0, 1)[0];
       var outcome = (this.compareCards(cardA, cardB));
       if (outcome.result === "player1") {
         console.log("player 1 wins the battle!");
@@ -103,10 +105,13 @@ $(document).ready(function() {
         }
       } else {
         //TODO figure out where to determine war
-        console.log("WAR!!!");
+        //console.log("WAR!!!");
       }
-      console.log(this.deck1);
-      console.log(this.deck2);
+      $("#battle").html(outcome.array[0].rank + " against " + outcome.array[1].rank);
+      $("#result").html(outcome.result);
+      console.log(outcome.array[0]);
+      //console.log(this.deck1);
+      //console.log(this.deck2);
     },
 
     //call the playHand on clicks of the play button
@@ -114,8 +119,8 @@ $(document).ready(function() {
       $("#play").on("click", function() {
         // TODO, how to make it say "this.playHand()" and work, not just "warGame.playHand"
         warGame.playHand();
-        warGame.showScore();
         warGame.showQuiver();
+        warGame.showScore();
       });
     },
 
