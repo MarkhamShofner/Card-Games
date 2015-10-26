@@ -21,7 +21,7 @@ $(document).ready(function() {
           this.deckMain.push(card);
         }
       }
-      console.log(this.deckMain);
+      // console.log(this.deckMain);
     },
 
     shuffleSplit: function() {
@@ -64,8 +64,8 @@ $(document).ready(function() {
     },
 
     playHand: function() {
-      var cardA = this.deck1[0];
-      var cardB = this.deck2[0];
+      var cardA = this.deck1.splice(0,1)[0];
+      var cardB = this.deck2.splice(0,1)[0];
       var outcome = (this.compareCards(cardA, cardB));
       if (outcome.result === "player1") {
         console.log("player 1 wins the battle!");
@@ -85,17 +85,27 @@ $(document).ready(function() {
       console.log(this.deck2);
     },
 
-    // callHand: $("p").on("click", function() {
-    //   $(this).css("background", "yellow");
-    // }),
+    // test code
+    yellowBackground: $("p").on("click", function() {
+      $(this).css("background", "green");
+    }),
+
+    //call the playHand on clicks
+    callHand: function() {
+      $("#play").on("click", function() {
+        // TODO, how to make it say "this.playHand()" and work, not just "warGame.playHand"
+        warGame.playHand();
+      });
+    },
 
     initializeGame: function() {
       this.makeDeck();
       this.shuffleSplit();
+      this.callHand();
     }
   };
 
   warGame.initializeGame();
-  warGame.playHand();
+  // warGame.playHand();
 
 });
