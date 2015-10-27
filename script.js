@@ -115,14 +115,18 @@ var warGame = {
     console.log(card2);
     if (card1.rank > card2.rank) {
       outcome.result = "Player 1";
+
     } else if (card2.rank > card1.rank) {
       outcome.result = "Player 2";
     } else {
       outcome.result = "WAR";
+      this.vessel.status = "WAR";
     }
     console.log(this.vessel.array);
     return outcome;
   },
+
+
 
   // executeHand
   executeHand: function() {
@@ -147,11 +151,9 @@ var warGame = {
       alert("WAR!");
       console.log(this.vessel.array);
       this.runHand();
-      //alert ("WAR! Click 3 times. Then a 4th.");
     }
-
     //TODO fix this winner statement
-    //$("#battle").html(this.vessel.array[this.vessel.array.length - 2].rank); + " " + this.vessel.array[this.vessel.array.length - 2][0].suit + " - v. - ");// + this.vessel.array[this.vessel.array.length - 1][0].rank + " " + this.vessel.array[this.vessel.array.length - 1][0].suit);
+    //$("#battle").html("this" + warGame.vessel.array[0].rank);//[this.vessel.array.length - 2].rank); + " " + this.vessel.array[this.vessel.array.length - 2][0].suit + " - v. - ");// + this.vessel.array[this.vessel.array.length - 1][0].rank + " " + this.vessel.array[this.vessel.array.length - 1][0].suit);
     $("#result").html(outcome.result);
 
   },
