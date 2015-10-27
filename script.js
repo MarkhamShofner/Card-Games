@@ -91,6 +91,7 @@ var warGame = {
 
   // Add cards (1 for normal, 4 for war) to the end of the vessel array
   takeCards: function() {
+    console.log(this.vessel.array);
     if (this.vessel.status === "normal") {
       this.vessel.array.push(this.deck1.splice(0, 1)[0]);
       this.vessel.array.push(this.deck2.splice(0, 1)[0]);
@@ -100,41 +101,41 @@ var warGame = {
         this.vessel.array.push(this.deck2.splice(0, 1)[0]);
       }
     }
+    console.log(this.vessel.array);
   },
 
-  // FIX THIS LINE compare value of two cards and assign an outcome and the battle-array
-  // compareCards
+  // compare the last two cards in the vessel array to determine which player wins
   measureCards: function() {
     var outcome = {
       result: "",
     };
-    console.log(this.vessel.array[0]);
     var card1 = this.vessel.array[this.vessel.array.length - 2];
     var card2 = this.vessel.array[this.vessel.array.length - 1];
     console.log(card1);
     console.log(card2);
     if (card1.rank > card2.rank) {
-      outcome.result = "player1";
+      outcome.result = "Player 1";
     } else if (card2.rank > card1.rank) {
-      outcome.result = "player2";
+      outcome.result = "Player 2";
     } else {
       outcome.result = "WAR";
     }
+    console.log(this.vessel.array);
     return outcome;
   },
 
   // executeHand
   executeHand: function() {
     var outcome = this.measureCards();
-    if (outcome.result === "player1") {
-      console.log("player 1 wins the battle!");
+    if (outcome.result === "Player 1") {
+      console.log("Player 1 wins the battle!");
       for (var i = 0; i < this.vessel.array.length; i++) {
         this.deck1.push(this.vessel.array[i]);
       }
       this.vessel.array = [];
       this.vessel.status = "normal";
-    } else if (outcome.result === "player2") {
-      console.log("player 2 wins the battle!");
+    } else if (outcome.result === "Player 2") {
+      console.log("Player 2 wins the battle!");
       for (var j = 0; j < this.vessel.array.length; j++) {
         this.deck2.push(this.vessel.array[j]);
       }
@@ -142,7 +143,10 @@ var warGame = {
       this.vessel.status = "normal";
     } else {
       //TODO figure out where to determine war
-      console.log("tie");
+      console.log("WAR");
+      alert("WAR!");
+      console.log(this.vessel.array);
+      this.runHand();
       //alert ("WAR! Click 3 times. Then a 4th.");
     }
 
