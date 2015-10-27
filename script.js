@@ -1,4 +1,4 @@
-// wait til ready
+// wait til page is ready
 $(document).ready(function() {
 
   // put all functions and variables inside an object
@@ -8,7 +8,7 @@ $(document).ready(function() {
     deckMain: [],
     deck1: [],
     deck2: [],
-    suits: ["hearts", "diamonds", "spades", "clubs"],
+    suits: ["Hearts", "Diamonds", "Spades", "Clubs"],
 
     // create the base main deck
     makeDeck: function() {
@@ -52,12 +52,12 @@ $(document).ready(function() {
         outcome.result = "player2";
         outcome.array.push(card2, card1);
       } else {
-        outcome.result = "tie";
+        outcome.result = "WAR";
         outcome.array.push(card1, card2);
       }
-      console.log(card1.rank);
-      console.log(card2.rank);
-      console.log(outcome);
+      // console.log(card1.rank);
+      // console.log(card2.rank);
+      // console.log(outcome);
       return outcome;
     },
 
@@ -105,11 +105,13 @@ $(document).ready(function() {
         }
       } else {
         //TODO figure out where to determine war
-        //console.log("WAR!!!");
+        console.log("tie");
+        //alert ("WAR! Click 3 times. Then a 4th.");
+
       }
-      $("#battle").html(outcome.array[0].rank + " against " + outcome.array[1].rank);
+      $("#battle").html(outcome.array[0].rank + " " + outcome.array[0].suit + " - v. - " + outcome.array[1].rank + " " + outcome.array[1].suit);
       $("#result").html(outcome.result);
-      console.log(outcome.array[0]);
+      // console.log(outcome.array[0]);
       //console.log(this.deck1);
       //console.log(this.deck2);
     },
