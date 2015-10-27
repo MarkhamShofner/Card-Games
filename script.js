@@ -1,6 +1,11 @@
 // wait til page is ready
 $(document).ready(function() {
 
+//TODO write a game summary overall
+// all other functions that don't interact with the dom
+  warGame.initializeGame();
+});
+
   // put all functions and variables inside an object
   var warGame = {
 
@@ -55,9 +60,6 @@ $(document).ready(function() {
         outcome.result = "WAR";
         outcome.array.push(card1, card2);
       }
-      // console.log(card1.rank);
-      // console.log(card2.rank);
-      // console.log(outcome);
       return outcome;
     },
 
@@ -107,22 +109,18 @@ $(document).ready(function() {
         //TODO figure out where to determine war
         console.log("tie");
         //alert ("WAR! Click 3 times. Then a 4th.");
-
       }
       $("#battle").html(outcome.array[0].rank + " " + outcome.array[0].suit + " - v. - " + outcome.array[1].rank + " " + outcome.array[1].suit);
       $("#result").html(outcome.result);
-      // console.log(outcome.array[0]);
-      //console.log(this.deck1);
-      //console.log(this.deck2);
     },
 
     //call the playHand on clicks of the play button
     callHand: function() {
+      var self = this;
       $("#play").on("click", function() {
-        // TODO, how to make it say "this.playHand()" and work, not just "warGame.playHand"
-        warGame.playHand();
-        warGame.showQuiver();
-        warGame.showScore();
+        self.playHand();
+        self.showQuiver();
+        self.showScore();
       });
     },
 
@@ -133,9 +131,3 @@ $(document).ready(function() {
       this.setQuiver();
     }
   };
-
-  warGame.initializeGame();
-
-
-
-});
