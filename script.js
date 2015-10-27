@@ -118,7 +118,8 @@ $(document).ready(function() {
 
     // parent function for hand functions
     runHand: function () {
-
+      this.takeCards();
+      this.executeHand();
     },
 
     // vessel object to track status of the hand, and the current array of the hand
@@ -192,7 +193,7 @@ $(document).ready(function() {
     callHand: function() {
       $("#play").on("click", function() {
         // TODO, how to make it say "this.playHand()" and work, not just "warGame.playHand"
-        warGame.executeHand();
+        warGame.runHand();
         warGame.showQuiver();
         warGame.showScore();
       });
@@ -201,15 +202,13 @@ $(document).ready(function() {
     initializeGame: function() {
       this.makeDeck();
       this.shuffleSplit();
-      this.executeHand();
+      this.runHand();
       this.setQuiver();
     }
   };
 
 
   warGame.initializeGame();
-  warGame.takeCards();
-  warGame.measureCards();
-  warGame.executeHand();
+
 
 });
