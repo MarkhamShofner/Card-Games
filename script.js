@@ -40,26 +40,26 @@ $(document).ready(function() {
     },
 
     // compare value of two cards and assign an outcome and the battle-array
-    compareCards: function(card1, card2) {
-      var outcome = {
-        result: "",
-        array: [],
-      };
-      if (card1.rank > card2.rank) {
-        outcome.result = "player1";
-        outcome.array.push(card1, card2);
-      } else if (card2.rank > card1.rank) {
-        outcome.result = "player2";
-        outcome.array.push(card2, card1);
-      } else {
-        outcome.result = "WAR";
-        outcome.array.push(card1, card2);
-      }
-      // console.log(card1.rank);
-      // console.log(card2.rank);
-      // console.log(outcome);
-      return outcome;
-    },
+    // compareCards: function(card1, card2) {
+    //   var outcome = {
+    //     result: "",
+    //     array: [],
+    //   };
+    //   if (card1.rank > card2.rank) {
+    //     outcome.result = "player1";
+    //     outcome.array.push(card1, card2);
+    //   } else if (card2.rank > card1.rank) {
+    //     outcome.result = "player2";
+    //     outcome.array.push(card2, card1);
+    //   } else {
+    //     outcome.result = "WAR";
+    //     outcome.array.push(card1, card2);
+    //   }
+    //   // console.log(card1.rank);
+    //   // console.log(card2.rank);
+    //   // console.log(outcome);
+    //   return outcome;
+    // },
 
     showScore: function() {
       $("#score1").html(this.deck1.length);
@@ -89,32 +89,32 @@ $(document).ready(function() {
     },
 
     // append the played cards to the deck of whichever player won the battle
-    playHand: function() {
-      var cardA = this.deck1.splice(0, 1)[0];
-      var cardB = this.deck2.splice(0, 1)[0];
-      var outcome = (this.compareCards(cardA, cardB));
-      if (outcome.result === "player1") {
-        console.log("player 1 wins the battle!");
-        for (var i = 0; i < outcome.array.length; i++) {
-          this.deck1.push(outcome.array[i]);
-        }
-      } else if (outcome.result === "player2") {
-        console.log("player 2 wins the battle!");
-        for (var j = 0; j < outcome.array.length; j++) {
-          this.deck2.push(outcome.array[j]);
-        }
-      } else {
-        //TODO figure out where to determine war
-        console.log("tie");
-        //alert ("WAR! Click 3 times. Then a 4th.");
-
-      }
-      $("#battle").html(outcome.array[0].rank + " " + outcome.array[0].suit + " - v. - " + outcome.array[1].rank + " " + outcome.array[1].suit);
-      $("#result").html(outcome.result);
-      // console.log(outcome.array[0]);
-      //console.log(this.deck1);
-      //console.log(this.deck2);
-    },
+    // playHand: function() {
+    //   var cardA = this.deck1.splice(0, 1)[0];
+    //   var cardB = this.deck2.splice(0, 1)[0];
+    //   var outcome = (this.compareCards(cardA, cardB));
+    //   if (outcome.result === "player1") {
+    //     console.log("player 1 wins the battle!");
+    //     for (var i = 0; i < outcome.array.length; i++) {
+    //       this.deck1.push(outcome.array[i]);
+    //     }
+    //   } else if (outcome.result === "player2") {
+    //     console.log("player 2 wins the battle!");
+    //     for (var j = 0; j < outcome.array.length; j++) {
+    //       this.deck2.push(outcome.array[j]);
+    //     }
+    //   } else {
+    //     //TODO figure out where to determine war
+    //     console.log("tie");
+    //     //alert ("WAR! Click 3 times. Then a 4th.");
+    //
+    //   }
+    //   $("#battle").html(outcome.array[0].rank + " " + outcome.array[0].suit + " - v. - " + outcome.array[1].rank + " " + outcome.array[1].suit);
+    //   $("#result").html(outcome.result);
+    //   // console.log(outcome.array[0]);
+    //   //console.log(this.deck1);
+    //   //console.log(this.deck2);
+    // },
 
     // parent function for hand functions
     runHand: function () {
@@ -123,18 +123,67 @@ $(document).ready(function() {
 
     // vessel object to track status of the hand, and the current array of the hand
     vessel: {
-      status: normal,
+      status: "normal",
       array: [],
     },
-    //TODO ^ reset vessel at the end
+    //TODO ^ reset vessel at the end, once the had is played out
 
     // add cards to the end
-    takeCards: function (scenario) {
-      if (scenario === "normal") {
-        var cardA = this.deck1.splice(0, 1)[0];
-        var cardB = this.deck2.splice(0, 1)[0];
-        console.log("hi");
+    takeCards: function () {
+      if (this.vessel.status === "normal") {
+        this.vessel.array.push(this.deck1.splice(0, 1)[0]);
+        this.vessel.array.push(this.deck2.splice(0, 1)[0]);
+        console.log(this.vessel.array);
       } else {
+        for (var i = 0; i<4 ; i++) {
+          this.vessel.array.push(this.deck1.splice(0, 1)[0]);
+          this.vessel.array.push(this.deck2.splice(0, 1)[0]);
+        }
+        console.log(this.vessel.array);
+      }
+    },
+
+    // compareCards
+    measureCards: function () {
+      var outcome = {
+        result: "",
+      };
+      console.log(this.vessel.array[0]);
+      var card1 = this.vessel.array[this.vessel.array.length - 2];
+      var card2 = this.vessel.array[this.vessel.array.length - 1];
+      console.log(card1);
+      console.log(card2);
+      if (card1.rank > card2.rank) {
+        outcome.result = "player1";
+      } else if (card2.rank > card1.rank) {
+        outcome.result = "player2";
+      } else {
+        outcome.result = "WAR";
+      }
+      return outcome;
+    },
+
+    // executeHand
+    executeHand: function () {
+      var outcome = this.measureCards();
+      if (outcome.result === "player1") {
+        console.log("player 1 wins the battle!");
+        for (var i = 0; i < this.vessel.array.length; i++) {
+          this.deck1.push(this.vessel.array[i]);
+        }
+        this.vessel.array = [];
+        this.vessel.status = "normal";
+      } else if (outcome.result === "player2") {
+        console.log("player 2 wins the battle!");
+        for (var j = 0; j < this.vesel.array.length; j++) {
+          this.deck2.push(this.vessel.array[j]);
+        }
+        this.vessel.array = [];
+        this.vessel.status = "normal";
+      } else {
+        //TODO figure out where to determine war
+        console.log("tie");
+        //alert ("WAR! Click 3 times. Then a 4th.");
 
       }
     },
@@ -143,22 +192,24 @@ $(document).ready(function() {
     callHand: function() {
       $("#play").on("click", function() {
         // TODO, how to make it say "this.playHand()" and work, not just "warGame.playHand"
-        warGame.playHand();
+        warGame.executeHand();
         warGame.showQuiver();
         warGame.showScore();
       });
     },
+
     initializeGame: function() {
       this.makeDeck();
       this.shuffleSplit();
-      this.callHand();
+      this.executeHand();
       this.setQuiver();
     }
   };
 
-  warGame.takeCards ("normal");
+
   warGame.initializeGame();
-
-
+  warGame.takeCards();
+  warGame.measureCards();
+  warGame.executeHand();
 
 });
