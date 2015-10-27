@@ -57,4 +57,5 @@ header {
 }
 .square.two {
   float: right;
+  transform: scaleX(-1);
 }
