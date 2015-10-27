@@ -116,6 +116,29 @@ $(document).ready(function() {
       //console.log(this.deck2);
     },
 
+    // parent function for hand functions
+    runHand: function () {
+
+    },
+
+    // vessel object to track status of the hand, and the current array of the hand
+    vessel: {
+      status: normal,
+      array: [],
+    },
+    //TODO ^ reset vessel at the end
+
+    // add cards to the end
+    takeCards: function (scenario) {
+      if (scenario === "normal") {
+        var cardA = this.deck1.splice(0, 1)[0];
+        var cardB = this.deck2.splice(0, 1)[0];
+        console.log("hi");
+      } else {
+
+      }
+    },
+
     //call the playHand on clicks of the play button
     callHand: function() {
       $("#play").on("click", function() {
@@ -125,7 +148,6 @@ $(document).ready(function() {
         warGame.showScore();
       });
     },
-
     initializeGame: function() {
       this.makeDeck();
       this.shuffleSplit();
@@ -134,6 +156,7 @@ $(document).ready(function() {
     }
   };
 
+  warGame.takeCards ("normal");
   warGame.initializeGame();
 
 
