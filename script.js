@@ -91,7 +91,6 @@ var warGame = {
 
   // Add cards (1 for normal, 4 for war) to the end of the vessel array
   takeCards: function() {
-    console.log(this.vessel.array);
     if (this.vessel.status === "normal") {
       this.vessel.array.push(this.deck1.splice(0, 1)[0]);
       this.vessel.array.push(this.deck2.splice(0, 1)[0]);
@@ -115,14 +114,17 @@ var warGame = {
     console.log(card2);
     if (card1.rank > card2.rank) {
       outcome.result = "Player 1";
-
+      console.log("Player 1 wins");
     } else if (card2.rank > card1.rank) {
       outcome.result = "Player 2";
+      console.log("Player 2 wins");
     } else {
+      console.log("War!");
       outcome.result = "WAR";
       this.vessel.status = "WAR";
     }
-    console.log(this.vessel.array);
+    $("#battle").html(card1.rank + " of " + card1.suit + " - v - " + card2.rank + " of " + card2.suit);
+    $("#result").html(outcome.result);
     return outcome;
   },
 
@@ -132,14 +134,12 @@ var warGame = {
   executeHand: function() {
     var outcome = this.measureCards();
     if (outcome.result === "Player 1") {
-      console.log("Player 1 wins the battle!");
       for (var i = 0; i < this.vessel.array.length; i++) {
         this.deck1.push(this.vessel.array[i]);
       }
       this.vessel.array = [];
       this.vessel.status = "normal";
     } else if (outcome.result === "Player 2") {
-      console.log("Player 2 wins the battle!");
       for (var j = 0; j < this.vessel.array.length; j++) {
         this.deck2.push(this.vessel.array[j]);
       }
@@ -147,19 +147,10 @@ var warGame = {
       this.vessel.status = "normal";
     } else {
       //TODO figure out where to determine war
-      console.log("WAR");
       alert("WAR!");
-      console.log(this.vessel.array);
       this.runHand();
     }
-    //TODO fix this winner statement
-    //$("#battle").html("this" + warGame.vessel.array[0].rank);//[this.vessel.array.length - 2].rank); + " " + this.vessel.array[this.vessel.array.length - 2][0].suit + " - v. - ");// + this.vessel.array[this.vessel.array.length - 1][0].rank + " " + this.vessel.array[this.vessel.array.length - 1][0].suit);
-    $("#result").html(outcome.result);
-
   },
-  //   $("#battle").html(outcome.array[0].rank + " " + outcome.array[0].suit + " - v. - " + outcome.array[1].rank + " " + outcome.array[1].suit);
-
-
 
   //call the playHand on clicks of the play button
   callHand: function() {
