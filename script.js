@@ -115,13 +115,16 @@ var warGame = {
     if (card1.rank > card2.rank) {
       outcome.result = "Player 1";
       console.log("Player 1 wins");
+      $(".resultArrow").attr("class", "resultArrow one");
     } else if (card2.rank > card1.rank) {
       outcome.result = "Player 2";
       console.log("Player 2 wins");
+      $(".resultArrow").attr("class", "resultArrow two");
     } else {
       console.log("War!");
       outcome.result = "WAR";
       this.vessel.status = "WAR";
+      $(".resultArrow").attr("class", "resultArrow");
     }
     $("#battle").html(card1.rank + " of " + card1.suit + " - v - " + card2.rank + " of " + card2.suit);
     $("#result").html(outcome.result);
