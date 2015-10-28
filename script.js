@@ -19,7 +19,7 @@ var warGame = {
   vessel: {
     status: "normal",
     array: [],
-    //TODO, in each card object, determine ownership of a player
+    owner: "",
   },
 
   // create the base main deck
@@ -42,9 +42,11 @@ var warGame = {
       var randomIndex = Math.floor(Math.random() * this.deckMain.length);
       var cardMove = this.deckMain.splice(randomIndex, 1);
       if (deal === 1) {
+        cardMove[0].owner = "1";
         this.deck1.push(cardMove[0]);
         deal = 2;
       } else {
+        cardMove[0].owner = "2";
         this.deck2.push(cardMove[0]);
         deal = 1;
       }
@@ -110,8 +112,9 @@ var warGame = {
     };
     var card1 = this.vessel.array[this.vessel.array.length - 2];
     var card2 = this.vessel.array[this.vessel.array.length - 1];
-    console.log(card1);
-    console.log(card2);
+
+    this.showCard(card1);
+    this.showCard(card2);
     if (card1.rank > card2.rank) {
       outcome.result = "Player 1";
       console.log("Player 1 wins");
@@ -126,7 +129,6 @@ var warGame = {
       this.vessel.status = "WAR";
       $(".resultArrow").attr("class", "resultArrow");
     }
-    $("#battle").html(card1.rank + " of " + card1.suit + " - v - " + card2.rank + " of " + card2.suit);
     $("#result").html(outcome.result);
     return outcome;
   },
@@ -164,6 +166,76 @@ var warGame = {
       self.showQuiver();
       self.showScore();
     });
+  },
+
+  //shows the value of the cards
+  showCard: function(card) {
+    var rank, suit;
+    switch (card.rank) {
+      case 2:
+        rank = "2";
+        break;
+      case 3:
+        rank = "3";
+        break;
+      case 4:
+        rank = "4";
+        break;
+      case 5:
+        rank = "5";
+        break;
+      case 6:
+        rank = "6";
+        break;
+      case 7:
+        rank = "7";
+        break;
+      case 8:
+        rank = "8";
+        break;
+      case 9:
+        rank = "9";
+        break;
+      case 10:
+        rank = "10";
+        break;
+      case 11:
+        rank = "J";
+        break;
+      case 12:
+        rank = "Q";
+        break;
+      case 13:
+        rank = "K";
+        break;
+      case 14:
+        rank = "A";
+        break;
+    }
+    switch (card.suit) {
+      case "Clubs":
+        suit = "\u2663";
+        break;
+      case "Diamonds":
+        suit = "\u2666";
+        break;
+      case "Spades":
+        suit = "\u2665";
+        break;
+      case "Hearts":
+        suit = "\u2660";
+        break;
+    }
+    if (card.owner === "1") {
+      console.log(rank + suit + "belongs to player 1");
+      $("#card1").attr("class", "card one activated");
+      $("#card1").html(rank + suit);
+    } else {
+      console.log(rank + suit + "belongs to player 2");
+      $("#card2").attr("class", "card two activated");
+      $("#card2").html(rank + suit);
+    }
+    
   },
 
   initializeGame: function() {
