@@ -59,6 +59,15 @@ header {
   float: right;
   transform: scaleX(-1);
 }
+.card{
+
+}
+.card.one{
+  /*float:left;*/
+}
+.card.two{
+
+}
 .resultArrow {
   margin: 10px;
   background-image: url(images/Arrow.png);
