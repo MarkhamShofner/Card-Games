@@ -27,20 +27,28 @@ Reason: Once out of my active cards, I can bring back all the cards I have won. 
 
 
 1. Explanations of the technologies used,
+```
 *HTML/CSS. Standard bones and styling.
 *Javascript. Basic function/behavior writing.
 *jQuery. DOM manipulation.
+```
 
-the approach taken,
+2. the approach taken,
+```
 *started by jotting down general goals and a draft wireframe of what I wanted to achieve
-*drafted a high-level MVP of my project on trello
+*drafted a high-level MVP of my project on Trello
 *began to realize the Bronze level functions, and place more functions in the Trello queue is as went
+```
 
-installation instructions,
+3. installation instructions,
+```
 *open up this link - http://markhamshofner.github.io/Card-Games/, and begin playing
+```
 
-unsolved problems, etc.
+4. unsolved problems, etc.
+```
 *Make the page more scalable in terms of CSS / HTML. More aesthetically friendly in different height / width dimensions. Need to clean up the position and location sets.
 *Make the tie/war alert mechanism less intrusive. Tethering it to my specific page with a function, and not grandfathering in a somewhat ugly/random box.
 *Clean up endgame functions. Right now the game just stops playing once a certain player loses all their arrows.
 *Put in some more user interactability. Whether through new decision making (War is a boring and simple game), or through hover events on the players or something like that, I'd like to make the game do more when interacted with.
+```
