@@ -26,7 +26,7 @@ Reason: Once out of my active cards, I can bring back all the cards I have won. 
 ```
 
 
-Explanations of the technologies used,
+1. Explanations of the technologies used,
 *HTML/CSS. Standard bones and styling.
 *Javascript. Basic function/behavior writing.
 *jQuery. DOM manipulation.
