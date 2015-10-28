@@ -68,7 +68,7 @@ var warGame = {
   // shows the current score in a #
   // assigns the html on the screen to be the length of deck1
   showScore: function() {
-    $("#score1").html(this.deck1.length);
+    $("#score1").html("\u2663 \u2666 \u2665 \u2660 "+ "Player 1 has " + "<u>" + this.deck1.length + "</u>"+ " arrows" + " \u2663 \u2666 \u2665 \u2660");
   },
 
   // shows the current score in images
@@ -129,29 +129,28 @@ var warGame = {
       this.vessel.status = "WAR";
       $(".resultArrow").attr("class", "resultArrow");
     }
-    $("#result").html(outcome.result);
     return outcome;
   },
-
-
 
   // executeHand
   executeHand: function() {
     var outcome = this.measureCards();
     if (outcome.result === "Player 1") {
+      $("#result").html("Player 1 wins " + this.vessel.array.length + " arrows");
       for (var i = 0; i < this.vessel.array.length; i++) {
         this.deck1.push(this.vessel.array[i]);
       }
       this.vessel.array = [];
       this.vessel.status = "normal";
     } else if (outcome.result === "Player 2") {
+      $("#result").html("Player 2 wins " + this.vessel.array.length + " arrows");
       for (var j = 0; j < this.vessel.array.length; j++) {
         this.deck2.push(this.vessel.array[j]);
       }
       this.vessel.array = [];
       this.vessel.status = "normal";
     } else {
-      //TODO figure out where to determine war
+      $("#result").html("WAR!");
       alert("WAR!");
       this.runHand();
     }
@@ -161,7 +160,6 @@ var warGame = {
   callHand: function() {
     var self = this;
     $("#play").on("click", function() {
-      // debugger;
       self.runHand();
       self.showQuiver();
       self.showScore();
@@ -212,6 +210,7 @@ var warGame = {
         rank = "A";
         break;
     }
+
     switch (card.suit) {
       case "Clubs":
         suit = "\u2663";
@@ -229,13 +228,13 @@ var warGame = {
     if (card.owner === "1") {
       console.log(rank + suit + "belongs to player 1");
       $("#card1").attr("class", "card one activated");
-      $("#card1").html(rank + suit);
+      $("#card1content").html(rank + suit);
     } else {
       console.log(rank + suit + "belongs to player 2");
       $("#card2").attr("class", "card two activated");
-      $("#card2").html(rank + suit);
+      $("#card2content").html(rank + suit);
     }
-    
+
   },
 
   initializeGame: function() {
@@ -243,5 +242,6 @@ var warGame = {
     this.shuffleSplit();
     this.callHand();
     this.setQuiver();
+    this.showScore();
   }
 };

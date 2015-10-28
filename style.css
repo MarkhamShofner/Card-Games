@@ -1,9 +1,15 @@
 body {
   background-color: rgb(185, 160, 86);
+  /*background-image: url(images/header.png);
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;*/
+  font-family: Eagle Lake;
 }
 h1 {
-  color: maroon;
+  color: rgb(128, 20, 20);
   font-size: 40px;
+  font-family: Eagle Lake;
 }
 header {
   text-align: center;
@@ -47,8 +53,8 @@ header {
   text-align: center;
 }
 .square {
-  height: 14px;
-  width: 1.5%;
+  height: 13.4px;
+  width: 15.8px;
   background-image: url(images/Arrow.png);
   background-size: 100%;
 }
@@ -59,23 +65,13 @@ header {
   float: right;
   transform: scaleX(-1);
 }
-.card{
-
-}
-.card.one{
-  /*float:left;*/
-}
-.card.two{
-
-}
 .resultArrow {
-  margin: 10px;
+  margin: 10px auto;
   background-image: url(images/Arrow.png);
   background-size: 100%;
   height: 120%;
   width: 70px;
   position: relative;
-  left: 37%;
   transform: rotate(-42deg);
 }
 .resultArrow.one {
@@ -85,7 +81,7 @@ header {
   transform: rotate(90deg);
 }
 .card {
-  background-image: url("images/Drawing.png");
+  background-image: url("images/cardBack.png");
   background-size: 100%;
   border-color: #808080 #000000 #000000 #808080;
   border-width: 1px;
@@ -93,7 +89,7 @@ header {
   font-size: 20pt;
   position: relative;
   width:  3.75em;
-  height: 5.00em;
+  height: 5.20em;
 }
 .card.one {
   float: left;
@@ -103,4 +99,13 @@ header {
 }
 .card.activated {
   background-color: red;
+  color: white;
+}
+.content{
+  position: relative;
+  top: 32%;
+  font-size: 40px;
+}
+#score1 {
+  font-size: .8em;
 }
