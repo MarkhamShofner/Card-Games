@@ -26,26 +26,26 @@ Reason: Once out of my active cards, I can bring back all the cards I have won. 
 ```
 
 
-1. Explanations of the technologies used,
+Explanations of the technologies used,
 ```
 *HTML/CSS. Standard bones and styling.
 *Javascript. Basic function/behavior writing.
 *jQuery. DOM manipulation.
 ```
 
-2. the approach taken,
+The approach taken,
 ```
 *started by jotting down general goals and a draft wireframe of what I wanted to achieve
 *drafted a high-level MVP of my project on Trello
 *began to realize the Bronze level functions, and place more functions in the Trello queue is as went
 ```
 
-3. installation instructions,
+Installation instructions,
 ```
 *open up this link - http://markhamshofner.github.io/Card-Games/, and begin playing
 ```
 
-4. unsolved problems, etc.
+Unsolved problems, etc.
 ```
 *Make the page more scalable in terms of CSS / HTML. More aesthetically friendly in different height / width dimensions. Need to clean up the position and location sets.
 *Make the tie/war alert mechanism less intrusive. Tethering it to my specific page with a function, and not grandfathering in a somewhat ugly/random box.
