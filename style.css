@@ -1,6 +1,7 @@
 body {
   background-color: rgb(185, 160, 86);
   font-family: Eagle Lake;
+  min-width: 870px;
 }
 h1 {
   color: rgb(128, 20, 20);
@@ -14,45 +15,32 @@ header {
   margin-bottom: 35px;
 }
 header p {
-  margin-top:0px;
+  margin-top: 0px;
   font-size: .7em;
 }
 #landscape {
-  /*border-style: solid;
-  border-width: 1px;*/
   position: relative;
   /*TODO make this more dynamic in terms of height. Way around clearfix?*/
   height: 200px;
 }
 .playerImage {
   width: 20%;
-  /*border-style: solid;
-  border-width: 1px;*/
   position: absolute;
   left: 1%;
 }
 .secondPlayer {
   transform: scaleX(-1);
   left: 78%;
-  /*border-style: solid;
-  border-width: 1px;*/
 }
 #battleground {
   position: absolute;
   height: 50px;
   width: 55%;
   left: 22.5%;
-  /*top: 25%;*/
-  /*border-style: solid;
-  border-width: 1px;
-  border-color: blue;*/
   text-align: center;
 }
 #quivers {
   height: 50px;
-  /*border-style: solid;
-  border-width: 1px;
-  border-color: blue;*/
   text-align: center;
 }
 .square {
@@ -92,7 +80,7 @@ header p {
   border-style: solid;
   font-size: 20pt;
   position: relative;
-  width:  3.75em;
+  width: 3.75em;
   height: 5.20em;
 }
 .card.one {
@@ -105,7 +93,7 @@ header p {
   background-color: red;
   color: white;
 }
-.content{
+.content {
   position: relative;
   top: 32%;
   font-size: 40px;
