@@ -159,7 +159,7 @@ var warGame = {
   //call the playHand on clicks of the play button
   callHand: function() {
     var self = this;
-    $("#play").on("click", function() {
+    $(".resultArrow").on("click", function() {
       self.runHand();
       self.showQuiver();
       self.showScore();
