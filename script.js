@@ -135,6 +135,7 @@ var warGame = {
   // executeHand
   executeHand: function() {
     var outcome = this.measureCards();
+    // mms: obvious duplication.  If recommend you extract "deck" and "player_name" (e.g. "Player 1") variables and then update the html using them
     if (outcome.result === "Player 1") {
       $("#result").html("Player 1 wins " + this.vessel.array.length + " arrows");
       for (var i = 0; i < this.vessel.array.length; i++) {
@@ -169,6 +170,7 @@ var warGame = {
   //shows the value of the cards
   showCard: function(card) {
     var rank, suit;
+    // mms: can you do this in just 5 case statements?
     switch (card.rank) {
       case 2:
         rank = "2";
@@ -211,6 +213,7 @@ var warGame = {
         break;
     }
 
+    // mms: might be a good use of a data structure that allows you to retrieve the icon, given a suit: `suits[card.suit].icon`  (better name than icon?)
     switch (card.suit) {
       case "Clubs":
         suit = "\u2663";
@@ -237,6 +240,7 @@ var warGame = {
 
   },
 
+  // mms: recommend moving this to the top, like a TOC
   initializeGame: function() {
     this.makeDeck();
     this.shuffleSplit();
